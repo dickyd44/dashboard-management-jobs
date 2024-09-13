@@ -1,13 +1,32 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { reactive, onMounted } from "vue";
 import axios from "axios";
 
+const router = useRouter();
+const route = useRoute();
+const idJob = route.params.id;
+
 const state = reactive({
-  job: {},
+  job: [],
   isLoading: true,
 });
+
+const deleteJob = async () => {
+  try {
+    const confirm = window.confirm("Are you sure want to delete this job?");
+    if (confirm) {
+      await axios.delete(`/api/jobs/${idJob}`);
+      toast.success("Deleted Job Successfully");
+      router.push(`/jobs`);
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Job wasn't deleted");
+  }
+  console.log(deleteJob);
+};
 
 onMounted(async () => {
   try {
@@ -52,7 +71,7 @@ onMounted(async () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="job in state.job" :key="job.id">
+                  <tr v-for="job in state.job" :key="job.id" :job="job">
                     <td>{{ job.id }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>
@@ -68,13 +87,17 @@ onMounted(async () => {
                         <i class="fa fa-eye mr-1" /> Detail
                       </RouterLink>
                       <RouterLink
-                        :to="`/jobs/edit/${state.job.id}`"
+                        :to="`/jobs/edit/${job.id}`"
                         type="button"
                         class="btn btn-info mr-2"
                       >
                         <i class="fa fa-edit mr-1" /> Edit
                       </RouterLink>
-                      <button type="button" class="btn btn-danger">
+                      <button
+                        @click="deleteJob"
+                        type="button"
+                        class="btn btn-danger"
+                      >
                         <i class="fa fa-trash mr-1" /> Delete
                       </button>
                     </td>

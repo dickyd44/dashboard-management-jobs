@@ -48,7 +48,7 @@ const handleSubmit = async () => {
   try {
     const response = await axios.put(`/api/jobs/${idJob}`, updatedJob);
     toast.success("Job Added Successfully");
-    router.push(`/jobs/${response.data.id}`);
+    router.push(`/jobs/${response.data.id === idJob}`);
   } catch (error) {
     console.error(error);
     toast.error("Job wasn't Added!");
