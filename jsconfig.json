@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "es6", // or "esnext" depending on your target environment
+    "module": "esnext", // or "commonjs" if you need CommonJS modules
+    "moduleResolution": "node", // Use Node-style module resolution
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Enable compatibility for CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Ensure consistent casing in filenames
+  },
+  "exclude": ["node_modules", "dist", "plugins"]
+}
