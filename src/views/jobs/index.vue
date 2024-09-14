@@ -1,29 +1,28 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
-import { RouterLink, useRoute, useRouter } from "vue-router";
+import { RouterLink } from "vue-router";
 import { reactive, onMounted } from "vue";
 import axios from "axios";
+import { useToast } from "vue-toastification";
 
-const router = useRouter();
-const route = useRoute();
-const idJob = route.params.id;
+const toast = useToast();
 
 const state = reactive({
   job: [],
   isLoading: true,
 });
 
-const deleteJob = async () => {
-  try {
-    const confirm = window.confirm("Are you sure want to delete this job?");
-    if (confirm) {
-      await axios.delete(`/api/jobs/${idJob}`);
-      toast.success("Deleted Job Successfully");
-      router.push(`/jobs`);
+const deleteJob = async (id) => {
+  const confirm = window.confirm("Are you sure want to delete this job?");
+  if (confirm) {
+    try {
+      await axios.delete(`/api/jobs/${id}`);
+      state.job = state.job.filter((job) => job.id !== id);
+      toast.success("Deleted job successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Job wasn't deleted!");
     }
-  } catch (error) {
-    console.error(error);
-    toast.error("Job wasn't deleted");
   }
 };
 

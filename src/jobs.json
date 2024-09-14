@@ -1,76 +1,6 @@
 {
   "jobs": [
     {
-      "title": "React Native Developer",
-      "type": "Full-Time",
-      "location": "Portland, ORG",
-      "description": "Join our team as a Front-End Developer in beautiful Portland, OR. We are looking for a skilled and enthusiastic individual to help us create innovative web solutions. Competitive salary and great benefits package available.",
-      "salary": "$150K - $175K",
-      "company": {
-        "name": "Port Solutions INC",
-        "description": "Port Solutions is a leading technology company specializing in software development and digital marketing. We are committed to providing our clients with cutting-edge solutions and our employees with a supportive and rewarding work environment.",
-        "contactEmail": "contactus@ipsumlorem.com",
-        "contactPhone": "555-555-5555"
-      },
-      "id": "3"
-    },
-    {
-      "id": "4",
-      "title": "Junior Front-End Dev",
-      "type": "Remote",
-      "location": "Bali, Babakan",
-      "description": "Redesign website to continue the projects as long 6 month",
-      "salary": "$175K - $200K",
-      "company": {
-        "name": "Bali Smart Investment",
-        "description": "The Platform to investment property in bali like Villa, Apartment, Cabin, etc, this company the building since 2012.",
-        "contactEmail": "balismartinvestment@gmail.com",
-        "contactPhone": "08136674820"
-      }
-    },
-    {
-      "id": "5",
-      "title": "Senior Full-Stack Developer",
-      "type": "Part-Time",
-      "location": "Batam, Batam Center",
-      "description": "Full Stack Developers are responsible for designing and developing websites and platforms. They work with design teams to ensure that user interactions on web pages are intuitive and engaging. They also provide back-end functionality that can run smoothly from any device or browser type commonly used today.",
-      "salary": "Over $200K",
-      "company": {
-        "name": "SAS",
-        "description": "SAS develops and markets a suite of analytical software (also called SAS), which helps access, manage, analyze and report data to aid decision making. This enterprise software is used by most Fortune 500 companies.",
-        "contactEmail": "sas@gmail.com",
-        "contactPhone": "08136674820"
-      }
-    },
-    {
-      "id": "6",
-      "title": "Software Engineer",
-      "type": "Remote",
-      "location": "Batam, Tiban",
-      "description": "What does a Software Engineer do? Software Engineers create software using the right programming languages, platforms and architectures. Not only do they build their systems, but they also develop, test, improve and maintain software by other engineers.",
-      "salary": "Over $200K",
-      "company": {
-        "name": "iPOST",
-        "description": "iPOST adalah startup yang berdiri sejak 2021 dan bergerak pada jasa pengirim barang dari luar negeri ke Indonesia melalui kapal dan pesawat.",
-        "contactEmail": "ipost@gmail.com",
-        "contactPhone": "08136674820"
-      }
-    },
-    {
-      "id": "7",
-      "title": "Senior Designer",
-      "type": "Full-Time",
-      "location": "Miami, FL",
-      "description": "Listening to design needs, coming up with ideas and communicating them to clients and other members of the team. Delegating design tasks and providing support for junior level design team members. Maintaining high standards of quality and making sure only the best work is released to the employer or client.",
-      "salary": "$60K - $70K",
-      "company": {
-        "name": "OnSea",
-        "description": "Listening to design needs, coming up with ideas and communicating them to clients and other members of the team. Delegating design tasks and providing support for junior level design team members. Maintaining high standards of quality and making sure only the best work is released to the employer or client.",
-        "contactEmail": "onsea@gmail.com",
-        "contactPhone": "444-444-444"
-      }
-    },
-    {
       "id": "8",
       "title": "Software Developer",
       "type": "Remote",
@@ -111,34 +41,6 @@
         "contactEmail": "boneconsulting@gmail.com",
         "contactPhone": "08136674820"
       }
-    },
-    {
-      "id": "e11f",
-      "title": "Personal Asisstant",
-      "type": "Full-Time",
-      "location": "Medan, Sumatra Utara",
-      "description": "Apa yang Dilakukan Pengembang Web Front-End Tingkat Pemula? Pengembang web front-end tingkat pemula membantu membuat antarmuka pengguna dan aspek interaktif situs web . Sebagai pekerja tingkat pemula, Anda membantu anggota tim pengembangan web yang memprogram situs web menggunakan kode HTML, CSS, dan JavaScript.",
-      "salary": "$100K - $125K",
-      "company": {
-        "name": "PT. Aliyah",
-        "description": "Apa yang Dilakukan Pengembang Web Front-End Tingkat Pemula? Pengembang web front-end tingkat pemula membantu membuat antarmuka pengguna dan aspek interaktif situs web . Sebagai pekerja tingkat pemula, Anda membantu anggota tim pengembangan web yang memprogram situs web menggunakan kode HTML, CSS, dan JavaScript.",
-        "contactEmail": "contactus@ipsumlorem.com",
-        "contactPhone": "555-555-5555"
-      }
-    },
-    {
-      "title": "DevOps",
-      "type": "Full-Time",
-      "location": "Miami, US",
-      "description": "Your code snippet is designed to update a job listing. However, it appears you are missing some key functionalities, such as fetching the existing job data when the component mounts, and handling form updates. Here’s a revised version of your code, including those features:",
-      "salary": "Over $200K",
-      "company": {
-        "name": "Beyond Coding",
-        "description": "Your code snippet is designed to update a job listing. However, it appears you are missing some key functionalities, such as fetching the existing job data when the component mounts, and handling form updates. Here’s a revised version of your code, including those features:",
-        "contactEmail": "loremipsum@gmail.com",
-        "contactPhone": "8888-888-888"
-      },
-      "id": "db4e"
     }
   ]
 }
