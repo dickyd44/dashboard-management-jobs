@@ -11,5 +11,6 @@
     "skipLibCheck": true, // Skip type checking of declaration files
     "forceConsistentCasingInFileNames": true // Ensure consistent casing in filenames
   },
-  "exclude": ["node_modules", "dist", "plugins"]
+  "exclude": ["node_modules", "dist", "plugins"],
+  "include": ["src/**/*"]
 }

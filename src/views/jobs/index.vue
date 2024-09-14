@@ -25,7 +25,6 @@ const deleteJob = async () => {
     console.error(error);
     toast.error("Job wasn't deleted");
   }
-  console.log(deleteJob);
 };
 
 onMounted(async () => {
@@ -94,7 +93,7 @@ onMounted(async () => {
                         <i class="fa fa-edit mr-1" /> Edit
                       </RouterLink>
                       <button
-                        @click="deleteJob"
+                        @click="() => deleteJob(job.id)"
                         type="button"
                         class="btn btn-danger"
                       >
