@@ -2,8 +2,8 @@
 import CardHeader from "@/components/atoms/CardHeader.vue";
 import { RouterLink } from "vue-router";
 import { reactive, onMounted } from "vue";
-import axios from "axios";
 import { useToast } from "vue-toastification";
+import axios from "axios";
 
 const toast = useToast();
 
@@ -13,12 +13,35 @@ const state = reactive({
 });
 
 const deleteJob = async (id) => {
-  const confirm = window.confirm("Are you sure want to delete this job?");
-  if (confirm) {
+  // Show confirmation dialog
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  });
+
+  // If confirmed
+  if (result.isConfirmed) {
     try {
+      // Perform the delete request
       await axios.delete(`/api/jobs/${id}`);
+
+      // Update the local state
       state.job = state.job.filter((job) => job.id !== id);
-      toast.success("Deleted job successfully");
+
+      // Show success message
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success",
+      });
+
+      // Show toast notification
+      // toast.success("Deleted job successfully");
     } catch (error) {
       console.error(error);
       toast.error("Job wasn't deleted!");
