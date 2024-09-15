@@ -30,7 +30,7 @@ onMounted(async () => {
   <CardHeader text="Detail Specific" />
 
   <section v-if="!state.isLoading" class="content">
-    <div class="card">
+    <div class="card mx-2">
       <div class="card-header">
         <h3 class="card-title">Job Details</h3>
       </div>

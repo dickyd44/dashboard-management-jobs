@@ -60,12 +60,12 @@ onMounted(async () => {
   }
 });
 
-const JobDisplayId = computed(() => {
-  return state.job.map((job, idx) => ({
-    ...job,
-    displayId: idx + 1,
-  }));
-});
+// const JobDisplay = computed(() => {
+//   return state.job.map((job, idx) => ({
+//     ...job,
+//     id: idx + 1,
+//   }));
+// });
 </script>
 
 <template>
@@ -99,8 +99,8 @@ const JobDisplayId = computed(() => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="job in JobDisplayId" :key="job.id" :job="job">
-                    <td>{{ job.displayId }}</td>
+                  <tr v-for="job in state.job" :key="job.id" :job="job">
+                    <td>{{ job.id }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>
                     <td>{{ job.description.substring(0, 70) }}...</td>
@@ -108,7 +108,7 @@ const JobDisplayId = computed(() => {
                     <td>{{ job.salary }}</td>
                     <td class="d-flex">
                       <RouterLink
-                        :to="'/jobs/' + job.id"
+                        :to="`/jobs/${job.id}`"
                         type="button"
                         class="btn btn-secondary mr-2"
                       >
