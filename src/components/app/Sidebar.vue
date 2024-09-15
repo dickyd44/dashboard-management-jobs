@@ -1,9 +1,16 @@
-<script setup></script>
+<script setup>
+import { RouterLink, useRoute } from "vue-router";
+
+const isActiveLink = (routePath) => {
+  const route = useRoute();
+  return route.path === routePath;
+};
+</script>
 
 <template>
   <aside class="main-sidebar bg-success elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <RouterLink to="/" class="brand-link">
       <img
         src="/dist/img/AdminLTELogo.png"
         alt="AdminLTE Logo"
@@ -11,7 +18,7 @@
         style="opacity: 0.8"
       />
       <span class="brand-text font-weight-light">Management Jobs</span>
-    </a>
+    </RouterLink>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -23,16 +30,24 @@
           data-accordion="false"
         >
           <li class="nav-item">
-            <a href="/" class="nav-link text-light">
+            <RouterLink
+              to="/"
+              class="nav-link text-white"
+              :class="{ 'active-link': isActiveLink('/') }"
+            >
               <i class="nav-icon fas fa-th"></i>
               <p>Dashboard</p>
-            </a>
+            </RouterLink>
           </li>
           <li class="nav-item">
-            <a href="/jobs" class="nav-link text-light">
+            <RouterLink
+              to="/jobs"
+              class="nav-link text-white"
+              :class="{ 'active-link': isActiveLink('/jobs') }"
+            >
               <i class="nav-icon fas fa-edit"></i>
               <p>Jobs</p>
-            </a>
+            </RouterLink>
           </li>
         </ul>
       </nav>
@@ -41,3 +56,18 @@
     <!-- /.sidebar -->
   </aside>
 </template>
+
+<style scoped>
+/* Hover state for all nav-links */
+.nav-link:hover,
+.nav-link.active-link {
+  background-color: white; /* Background color on hover or active */
+  color: #000000b4 !important; /* Text color on hover or active; use !important to override other styles */
+}
+
+/* Active link state specifically */
+.active-link {
+  background-color: white; /* Background color for active link */
+  color: #000000b4 !important; /* Text color for active link; use !important to ensure it overrides */
+}
+</style>

@@ -44,18 +44,36 @@
         </div>
       </li>
 
-      <div class="user-panel d-flex align-items-center">
-        <div class="info">
-          <a href="#" class="d-block">User</a>
-        </div>
-        <div class="image">
-          <img
-            src="/dist/img/user2-160x160.jpg"
-            class="img-circle elevation-1"
-            alt="User Image"
-          />
-        </div>
-      </div>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown user user-menu">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <span class="hidden-xs font-weight-bold">User</span>&nbsp;
+            <img
+              class="img-circle user-image"
+              src="/dist/img/user2-160x160.jpg"
+            />
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="#" class="dropdown-item" data-target="#changePassword">
+              <i class="fas fa-lock mr-2"></i> Change Password
+            </a>
+            <div class="dropdown-divider"></div>
+            <form action="#" method="POST">
+              <button type="submit" class="dropdown-item text-danger">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+              </button>
+            </form>
+          </div>
+        </li>
+      </ul>
     </ul>
   </nav>
 </template>
+
+<style scoped>
+.user-image {
+  width: 29px !important; /* Adjust the width to make the image smaller */
+  height: 29px !important; /* Adjust the height to make the image smaller */
+  object-fit: cover; /* Ensure the image scales nicely */
+}
+</style>
