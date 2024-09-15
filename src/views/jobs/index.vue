@@ -1,7 +1,7 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
 import { RouterLink } from "vue-router";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useToast } from "vue-toastification";
 import axios from "axios";
 
@@ -59,6 +59,13 @@ onMounted(async () => {
     state.isLoading = false;
   }
 });
+
+const JobDisplayId = computed(() => {
+  return state.job.map((job, idx) => ({
+    ...job,
+    displayId: idx + 1,
+  }));
+});
 </script>
 
 <template>
@@ -92,8 +99,8 @@ onMounted(async () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="job in state.job" :key="job.id" :job="job">
-                    <td>{{ job.id }}</td>
+                  <tr v-for="job in JobDisplayId" :key="job.id" :job="job">
+                    <td>{{ job.displayId }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>
                     <td>{{ job.description.substring(0, 70) }}...</td>
