@@ -1,9 +1,13 @@
 <script setup>
+import logo from "@/assets/logo.png";
 import { RouterLink, useRoute } from "vue-router";
 
 const isActiveLink = (routePath) => {
   const route = useRoute();
-  return route.path === routePath;
+  return (
+    route.path === routePath ||
+    (routePath === "/" && route.path === "/dashboard")
+  );
 };
 </script>
 
@@ -12,7 +16,7 @@ const isActiveLink = (routePath) => {
     <!-- Brand Logo -->
     <RouterLink to="/" class="brand-link">
       <img
-        src="/dist/img/AdminLTELogo.png"
+        :src="logo"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"

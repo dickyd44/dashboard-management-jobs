@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="login-box">
+  <div class="hold-transition login-page">
     <slot />
   </div>
 </template>

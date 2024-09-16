@@ -54,11 +54,15 @@
             />
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item" data-target="#changePassword">
+            <a
+              href="/change-password"
+              class="dropdown-item"
+              data-target="#changePassword"
+            >
               <i class="fas fa-lock mr-2"></i> Change Password
             </a>
             <div class="dropdown-divider"></div>
-            <form action="#" method="POST">
+            <form action="/login" method="POST">
               <button type="submit" class="dropdown-item text-danger">
                 <i class="fas fa-sign-out-alt mr-2"></i> Logout
               </button>
