@@ -77,7 +77,7 @@ onMounted(async () => {
             <!-- /.card-header -->
             <div class="card-body">
               <table
-                id="table-export"
+                id="table-primary"
                 class="table table-bordered table-striped"
               >
                 <thead>
