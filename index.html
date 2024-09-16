@@ -72,32 +72,5 @@
     <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script>
-      $(function () {
-        $("#table-export")
-          .DataTable({
-            responsive: true,
-            paging: true,
-            lengthChange: false,
-            autoWidth: false,
-            buttons: ["excel", "pdf", "print"],
-          })
-          .buttons()
-          .container()
-          .appendTo("#table-export_wrapper .col-md-6:eq(0)");
-        $("#table-primary").DataTable({
-          paging: true,
-          lengthChange: false,
-          searching: true,
-          ordering: true,
-          info: true,
-          responsive: true,
-          autoWidth: false,
-          //
-          scrollX: false,
-          scrollCollapse: false,
-        });
-      });
-    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
 import { RouterLink } from "vue-router";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, nextTick } from "vue";
 import { useToast } from "vue-toastification";
 import axios from "axios";
 
@@ -53,12 +53,28 @@ onMounted(async () => {
   try {
     const response = await axios.get(`/api/jobs`);
     state.job = response.data;
+    await nextTick();
+    implementDataTable();
   } catch (error) {
     console.error(error);
   } finally {
     state.isLoading = false;
   }
 });
+
+const implementDataTable = () => {
+  $("#table-export")
+    .DataTable({
+      responsive: true,
+      paging: true,
+      lengthChange: false,
+      autoWidth: false,
+      buttons: ["print", "pdf", "excel"],
+    })
+    .buttons()
+    .container()
+    .appendTo("#table-export_wrapper .col-md-6:eq(0)");
+};
 </script>
 
 <template>
@@ -77,7 +93,7 @@ onMounted(async () => {
             <!-- /.card-header -->
             <div class="card-body">
               <table
-                id="table-primary"
+                id="table-export"
                 class="table table-bordered table-striped"
               >
                 <thead>
