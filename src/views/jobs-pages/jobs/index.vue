@@ -13,7 +13,6 @@ const state = reactive({
 });
 
 const deleteJob = async (id) => {
-  // Show confirmation dialog
   const result = await Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -24,23 +23,16 @@ const deleteJob = async (id) => {
     confirmButtonText: "Yes, delete it!",
   });
 
-  // If confirmed
   if (result.isConfirmed) {
     try {
-      // Perform the delete request
       await axios.delete(`/api/jobs/${id}`);
-
-      // Update the local state
       state.job = state.job.filter((job) => job.id !== id);
-
-      // Show success message
       Swal.fire({
         title: "Deleted!",
         text: "Your file has been deleted.",
         icon: "success",
       });
 
-      // Show toast notification
       // toast.success("Deleted job successfully");
     } catch (error) {
       console.error(error);
