@@ -45,6 +45,7 @@ onMounted(async () => {
   try {
     const response = await axios.get(`/api/jobs`);
     state.job = response.data;
+    console.log("Fetched Jobs:", state.job); // Debugging line
     await nextTick();
     initializeDataTable();
   } catch (error) {

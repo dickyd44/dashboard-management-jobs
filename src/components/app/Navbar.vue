@@ -1,5 +1,15 @@
 <script setup>
 import router from "@/router";
+import { ref, onMounted } from "vue";
+
+const username = ref("");
+
+onMounted(async () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    username.value = user.username;
+  }
+});
 
 const logout = () => {
   localStorage.removeItem("user");
@@ -54,7 +64,10 @@ const logout = () => {
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown user user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-            <span class="hidden-xs font-weight-bold">User</span>&nbsp;
+            <span class="hidden-xs font-weight-bold text-capitalize">
+              {{ username }}
+            </span>
+            &nbsp;
             <img
               class="img-circle user-image"
               src="/dist/img/user2-160x160.jpg"
