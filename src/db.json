@@ -102,13 +102,13 @@
   "users": [
     {
       "id": "1",
-      "username": "admin",
-      "password": "admin123"
+      "username": "superadmin",
+      "password": "superadmin123"
     },
     {
       "id": "2",
-      "username": "user",
-      "password": "user123"
+      "username": "admin",
+      "password": "admin123"
     }
   ]
 }

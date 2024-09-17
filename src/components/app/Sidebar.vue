@@ -35,9 +35,9 @@ const isActiveLink = (routePath) => {
         >
           <li class="nav-item">
             <RouterLink
-              to="/"
+              to="/dashboard"
               class="nav-link text-white"
-              :class="{ 'active-link': isActiveLink('/') }"
+              :class="{ 'active-link': isActiveLink('/dashboard') }"
             >
               <i class="nav-icon fas fa-th"></i>
               <p>Dashboard</p>
@@ -51,6 +51,16 @@ const isActiveLink = (routePath) => {
             >
               <i class="nav-icon fas fa-edit"></i>
               <p>Jobs</p>
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink
+              to="/jobs/report"
+              class="nav-link text-white"
+              :class="{ 'active-link': isActiveLink('/jobs/report') }"
+            >
+              <i class="nav-icon fas fa-file"></i>
+              <p>Reports</p>
             </RouterLink>
           </li>
         </ul>

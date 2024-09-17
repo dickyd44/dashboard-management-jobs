@@ -1,41 +1,9 @@
 <script setup>
 import logo from "@/assets/logo.png";
-import router from "@/router";
-import { reactive } from "vue";
-import axios from "axios";
-
-const account = reactive({
-  username: "",
-  password: "",
-  errorMessage: "",
-});
-
-const handleLogin = async () => {
-  try {
-    const response = await axios.get("/api/users", {
-      params: { username: account.username, password: account.password },
-    });
-    const user = response.data[0];
-
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-      router.push({ name: "dashboard" });
-    } else {
-      account.errorMessage = "Invalid Username or Password";
-    }
-  } catch (error) {
-    account.errorMessage = "An error occured during login";
-    console.error(error);
-  }
-};
 </script>
 
 <template>
   <div class="login-box">
-    <div v-if="account.errorMessage" class="alert alert-danger">
-      {{ account.errorMessage }}
-    </div>
-
     <div class="card card-outline card-ligth">
       <div class="card-header text-center">
         <a href="/"
@@ -43,17 +11,15 @@ const handleLogin = async () => {
         /></a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Sign In</p>
+        <p class="login-box-msg">Sign Up</p>
 
-        <form @submit.prevent="handleLogin">
+        <form action="/login" method="post">
           <div class="input-group mb-3">
             <input
-              v-model="account.username"
               name="username"
               type="text"
               class="form-control"
               placeholder="Username"
-              required
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -63,12 +29,36 @@ const handleLogin = async () => {
           </div>
           <div class="input-group mb-3">
             <input
-              v-model="account.password"
+              name="email"
+              type="email"
+              class="form-control"
+              placeholder="Email"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
               name="password"
               type="password"
               class="form-control"
               placeholder="Password"
-              required
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              name="confirm-password"
+              type="password"
+              class="form-control"
+              placeholder="Confirm Password"
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -83,9 +73,9 @@ const handleLogin = async () => {
                 Login
               </button>
               <span class="btn-block w-100">
-                if you don't have an <br />
+                if you have an <br />
                 account please
-                <a href="/register"><u>Sign Up</u></a>
+                <a href="/login"><u>Sign In</u></a>
               </span>
             </div>
             <!-- /.col -->

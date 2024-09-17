@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/views/auth/login.vue";
+import Register from "@/views/auth/register.vue";
 import ChangePassword from "@/views/auth/change-password.vue";
 import Dashboard from "@/views/dashboard/index.vue";
 import Jobs from "@/views/jobs-pages/jobs/index.vue";
 import AddJobs from "@/views/jobs-pages/add-job/index.vue";
 import DetailJob from "@/views/jobs-pages/detail-job/index.vue";
 import EditJob from "@/views/jobs-pages/edit-job/index.vue";
+import ReportJob from "@/views/jobs-pages/report-job/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,13 +18,18 @@ const router = createRouter({
       component: Login,
     },
     {
+      path: "/register",
+      name: "register",
+      component: Register,
+    },
+    {
       path: "/change-password",
       name: "change-password",
       component: ChangePassword,
     },
     {
       path: "/",
-      redirect: "/dashboard",
+      redirect: "/login",
     },
     {
       path: "/dashboard",
@@ -49,7 +56,25 @@ const router = createRouter({
       name: "edit-job",
       component: EditJob,
     },
+    {
+      path: "/jobs/report",
+      name: "report-job",
+      component: ReportJob,
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const publicPage = ["login", "register"];
+  const authRequired = !publicPage.includes(to.path);
+  const loggedIn = localStorage.getItem("user");
+
+  if (authRequired && !loggedIn) {
+    if (to.path !== "/login") {
+      return next("/login");
+    }
+  }
+  next();
 });
 
 export default router;

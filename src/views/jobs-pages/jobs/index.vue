@@ -46,7 +46,7 @@ onMounted(async () => {
     const response = await axios.get(`/api/jobs`);
     state.job = response.data;
     await nextTick();
-    implementDataTable();
+    initializeDataTable();
   } catch (error) {
     console.error(error);
   } finally {
@@ -54,18 +54,19 @@ onMounted(async () => {
   }
 });
 
-const implementDataTable = () => {
-  $("#table-export")
-    .DataTable({
-      responsive: true,
-      paging: true,
-      lengthChange: false,
-      autoWidth: false,
-      buttons: ["print", "pdf", "excel"],
-    })
-    .buttons()
-    .container()
-    .appendTo("#table-export_wrapper .col-md-6:eq(0)");
+const initializeDataTable = () => {
+  $("#table-primary").DataTable({
+    paging: true,
+    lengthChange: false,
+    searching: true,
+    ordering: true,
+    info: true,
+    responsive: true,
+    autoWidth: false,
+    //
+    scrollX: false,
+    scrollCollapse: false,
+  });
 };
 </script>
 
@@ -85,7 +86,7 @@ const implementDataTable = () => {
             <!-- /.card-header -->
             <div class="card-body">
               <table
-                id="table-export"
+                id="table-primary"
                 class="table table-bordered table-striped"
               >
                 <thead>

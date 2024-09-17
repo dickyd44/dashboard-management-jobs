@@ -7,7 +7,11 @@ import { computed } from "vue";
 const route = useRoute();
 
 const isAuthRoute = computed(() => {
-  return route.name === "login" || route.name === "change-password";
+  return (
+    route.name === "login" ||
+    route.name === "register" ||
+    route.name === "change-password"
+  );
 });
 </script>
 

@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import router from "@/router";
+
+const logout = () => {
+  localStorage.removeItem("user");
+  router.push("/login");
+};
+</script>
 
 <template>
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -62,11 +69,13 @@
               <i class="fas fa-lock mr-2"></i> Change Password
             </a>
             <div class="dropdown-divider"></div>
-            <form action="/login" method="POST">
-              <button type="submit" class="dropdown-item text-danger">
-                <i class="fas fa-sign-out-alt mr-2"></i> Logout
-              </button>
-            </form>
+            <button
+              @click="logout"
+              type="submit"
+              class="dropdown-item text-danger"
+            >
+              <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
           </div>
         </li>
       </ul>
