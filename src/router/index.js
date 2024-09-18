@@ -65,15 +65,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPage = ["login", "register"];
-  const authRequired = !publicPage.includes(to.path);
+  const publicPages = ["login", "register"];
+  const authRequired = !publicPages.includes(to.name);
   const loggedIn = localStorage.getItem("user");
 
   if (authRequired && !loggedIn) {
-    if (to.path !== "/login") {
-      return next("/login");
-    }
+    return next("/login");
   }
+
   next();
 });
 

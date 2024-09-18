@@ -117,12 +117,26 @@
     {
       "id": "1",
       "username": "superadmin",
-      "password": "superadmin123"
+      "email": "superadmin@gmail.com",
+      "password": "batman"
     },
     {
       "id": "2",
       "username": "admin",
-      "password": "admin123"
+      "email": "admin@gmail.com",
+      "password": "admin456"
+    },
+    {
+      "id": "2775",
+      "username": "usersatu",
+      "email": "usersatu@gmail.com",
+      "password": "usersatu"
+    },
+    {
+      "id": "ab9d",
+      "username": "userdua",
+      "email": "userdua@gmail.com",
+      "password": "userdua"
     }
   ]
 }

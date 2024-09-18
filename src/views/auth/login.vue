@@ -2,10 +2,12 @@
 import logo from "@/assets/logo.png";
 import router from "@/router";
 import { reactive } from "vue";
+import { RouterLink } from "vue-router";
 import axios from "axios";
 
 const account = reactive({
   username: "",
+  email: "",
   password: "",
   errorMessage: "",
 });
@@ -85,7 +87,7 @@ const handleLogin = async () => {
               <span class="btn-block w-100">
                 if you don't have an <br />
                 account please
-                <a href="/register"><u>Sign Up</u></a>
+                <RouterLink to="/register"><u>Sign Up</u></RouterLink>
               </span>
             </div>
             <!-- /.col -->

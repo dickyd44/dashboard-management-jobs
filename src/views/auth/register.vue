@@ -1,9 +1,56 @@
 <script setup>
 import logo from "@/assets/logo.png";
+import router from "@/router";
+import { reactive } from "vue";
+import { RouterLink } from "vue-router";
+import { useToast } from "vue-toastification";
+import axios from "axios";
+
+const toast = useToast();
+
+const register = reactive({
+  username: "",
+  email: "",
+  password: "",
+  real_password: "",
+  errorMessage: "",
+});
+
+const handleRegister = async () => {
+  if (register.password !== register.real_password) {
+    register.errorMessage = "Password do not match!";
+    return;
+  }
+
+  try {
+    const response = await axios.post("/api/users", {
+      username: register.username,
+      email: register.email,
+      password: register.password,
+    });
+    const user = response.data;
+    toast.success("Successfully registered an account");
+
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      router.push({ name: "login" });
+    } else {
+      register.errorMessage = "Account has been Sign Up";
+    }
+  } catch (error) {
+    toast.error("Couldn't register an account successfully");
+    register.errorMessage = "An error occured during Sign Up";
+    console.error(error);
+  }
+};
 </script>
 
 <template>
   <div class="login-box">
+    <div v-if="register.errorMessage" class="alert alert-danger">
+      {{ register.errorMessage }}
+    </div>
+
     <div class="card card-outline card-ligth">
       <div class="card-header text-center">
         <a href="/"
@@ -13,9 +60,10 @@ import logo from "@/assets/logo.png";
       <div class="card-body">
         <p class="login-box-msg">Sign Up</p>
 
-        <form action="/login" method="post">
+        <form @submit.prevent="handleRegister">
           <div class="input-group mb-3">
             <input
+              v-model="register.username"
               name="username"
               type="text"
               class="form-control"
@@ -29,6 +77,7 @@ import logo from "@/assets/logo.png";
           </div>
           <div class="input-group mb-3">
             <input
+              v-model="register.email"
               name="email"
               type="email"
               class="form-control"
@@ -42,6 +91,7 @@ import logo from "@/assets/logo.png";
           </div>
           <div class="input-group mb-3">
             <input
+              v-model="register.password"
               name="password"
               type="password"
               class="form-control"
@@ -55,6 +105,7 @@ import logo from "@/assets/logo.png";
           </div>
           <div class="input-group mb-3">
             <input
+              v-model="register.real_password"
               name="confirm-password"
               type="password"
               class="form-control"
@@ -70,12 +121,12 @@ import logo from "@/assets/logo.png";
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" class="btn btn-success btn-block w-100">
-                Login
+                Register
               </button>
               <span class="btn-block w-100">
                 if you have an <br />
                 account please
-                <a href="/login"><u>Sign In</u></a>
+                <RouterLink to="/login"><u>Sign In</u></RouterLink>
               </span>
             </div>
             <!-- /.col -->
