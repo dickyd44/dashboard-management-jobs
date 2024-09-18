@@ -1,12 +1,14 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
+import Content from "@/components/atoms/Content.vue";
+import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
 </script>
 
 <template>
   <CardHeader text="Dashboard" />
 
-  <section class="content">
-    <div class="container-fluid">
+  <Content>
+    <ContainerFluid>
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-6">
@@ -78,6 +80,6 @@ import CardHeader from "@/components/atoms/CardHeader.vue";
         </div>
         <!-- ./col -->
       </div>
-    </div>
-  </section>
+    </ContainerFluid>
+  </Content>
 </template>

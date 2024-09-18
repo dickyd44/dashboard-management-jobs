@@ -1,5 +1,7 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
+import Content from "@/components/atoms/Content.vue";
+import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
 import router from "@/router";
 import { reactive, onMounted } from "vue";
 import { useToast } from "vue-toastification";
@@ -81,8 +83,8 @@ onMounted(async () => {
 <template>
   <CardHeader text="Edit Job" class="text-center" />
 
-  <section class="content">
-    <div class="container-fluid">
+  <Content>
+    <ContainerFluid>
       <div
         class="row justify-content-center align-items-center"
         style="height: 100%"
@@ -247,6 +249,6 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </ContainerFluid>
+  </Content>
 </template>

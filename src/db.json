@@ -118,25 +118,29 @@
       "id": "1",
       "username": "superadmin",
       "email": "superadmin@gmail.com",
-      "password": "batman"
+      "password": "batman",
+      "role": "superadmin"
     },
     {
       "id": "2",
       "username": "admin",
       "email": "admin@gmail.com",
-      "password": "admin456"
+      "password": "admin456",
+      "role": "admin"
     },
     {
       "id": "2775",
       "username": "usersatu",
       "email": "usersatu@gmail.com",
-      "password": "usersatu"
+      "password": "usersatu",
+      "role": "user"
     },
     {
       "id": "ab9d",
       "username": "userdua",
       "email": "userdua@gmail.com",
-      "password": "userdua"
+      "password": "userdua",
+      "role": "user"
     }
   ]
 }

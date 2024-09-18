@@ -1,5 +1,7 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
+import Content from "@/components/atoms/Content.vue";
+import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
 import router from "@/router";
 import { reactive } from "vue";
 import { useToast } from "vue-toastification";
@@ -50,8 +52,8 @@ const handleSubmit = async () => {
 <template>
   <CardHeader text="Add Job" class="text-center" />
 
-  <section class="content">
-    <div class="container-fluid">
+  <Content>
+    <ContainerFluid>
       <div
         class="row justify-content-center align-items-center"
         style="height: 100%"
@@ -212,6 +214,6 @@ const handleSubmit = async () => {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </ContainerFluid>
+  </Content>
 </template>

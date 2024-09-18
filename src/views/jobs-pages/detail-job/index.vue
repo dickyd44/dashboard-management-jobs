@@ -3,6 +3,7 @@ import { reactive, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import CardHeader from "@/components/atoms/CardHeader.vue";
+import Content from "@/components/atoms/Content.vue";
 import axios from "axios";
 
 const route = useRoute();
@@ -29,7 +30,7 @@ onMounted(async () => {
 <template>
   <CardHeader text="Detail Specific" />
 
-  <section v-if="!state.isLoading" class="content">
+  <Content v-if="!state.isLoading">
     <div class="card mx-2">
       <div class="card-header">
         <h3 class="card-title">Job Details</h3>
@@ -93,7 +94,7 @@ onMounted(async () => {
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
-  </section>
+  </Content>
 
   <div v-else class="text-center text-secondary">
     <PulseLoader />

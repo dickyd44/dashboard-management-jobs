@@ -1,5 +1,7 @@
 <script setup>
 import CardHeader from "@/components/atoms/CardHeader.vue";
+import Content from "@/components/atoms/Content.vue";
+import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
 import { RouterLink } from "vue-router";
 import { reactive, onMounted, nextTick } from "vue";
 import { useToast } from "vue-toastification";
@@ -74,8 +76,8 @@ const initializeDataTable = () => {
 <template>
   <CardHeader text="List Jobs" />
 
-  <section class="content">
-    <div class="container-fluid">
+  <Content>
+    <ContainerFluid>
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -139,6 +141,6 @@ const initializeDataTable = () => {
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </ContainerFluid>
+  </Content>
 </template>
