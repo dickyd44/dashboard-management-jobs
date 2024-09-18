@@ -1,6 +1,7 @@
 <script setup>
 import logo from "@/assets/logo.png";
 import { RouterLink, useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
 
 const isActiveLink = (routePath) => {
   const route = useRoute();
@@ -9,6 +10,16 @@ const isActiveLink = (routePath) => {
     (routePath === "/" && route.path === "/dashboard")
   );
 };
+
+const userRole = ref(null);
+
+onMounted(() => {
+  const user = localStorage.getItem("user");
+  if (user) {
+    const parsedUser = JSON.parse(user);
+    userRole.value = parsedUser.role;
+  }
+});
 </script>
 
 <template>
@@ -43,7 +54,10 @@ const isActiveLink = (routePath) => {
               <p>Dashboard</p>
             </RouterLink>
           </li>
-          <li class="nav-item">
+          <li
+            v-if="userRole === 'superadmin' || userRole === 'admin'"
+            class="nav-item"
+          >
             <RouterLink
               to="/jobs"
               class="nav-link text-white"
