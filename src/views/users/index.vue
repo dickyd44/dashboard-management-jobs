@@ -2,7 +2,7 @@
 import CardHeader from "@/components/atoms/CardHeader.vue";
 import Content from "@/components/atoms/Content.vue";
 import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
-import { reactive, onMounted, nextTick, computed } from "vue";
+import { reactive, onMounted, nextTick, computed, ref } from "vue";
 import { useToast } from "vue-toastification";
 import axios from "axios";
 
@@ -80,6 +80,16 @@ const initializeDataTable = (tableId) => {
     scrollCollapse: false,
   });
 };
+
+const useRole = ref(null);
+
+onMounted(() => {
+  const user = localStorage.getItem("user");
+  if (user) {
+    const parsedUser = JSON.parse(user);
+    useRole.value = parsedUser.role;
+  }
+});
 </script>
 
 <template>
@@ -118,7 +128,13 @@ const initializeDataTable = (tableId) => {
                           <th>Username</th>
                           <th>Email</th>
                           <th>Role</th>
-                          <th>Action</th>
+                          <th
+                            v-if="
+                              useRole === 'superadmin' || useRole === 'admin'
+                            "
+                          >
+                            Action
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -131,7 +147,11 @@ const initializeDataTable = (tableId) => {
                           <td>{{ user.username }}</td>
                           <td>{{ user.email }}</td>
                           <td>{{ user.role }}</td>
-                          <td class="d-flex">
+                          <td
+                            v-if="
+                              useRole === 'superadmin' || useRole === 'admin'
+                            "
+                          >
                             <button
                               @click="() => deleteJob(user.id)"
                               type="button"
@@ -158,7 +178,13 @@ const initializeDataTable = (tableId) => {
                           <th>Username</th>
                           <th>Email</th>
                           <th>Role</th>
-                          <th>Action</th>
+                          <th
+                            v-if="
+                              useRole === 'superadmin' || useRole === 'admin'
+                            "
+                          >
+                            Action
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -171,7 +197,11 @@ const initializeDataTable = (tableId) => {
                           <td>{{ user.username }}</td>
                           <td>{{ user.email }}</td>
                           <td>{{ user.role }}</td>
-                          <td class="d-flex">
+                          <td
+                            v-if="
+                              useRole === 'superadmin' || useRole === 'admin'
+                            "
+                          >
                             <button
                               @click="() => deleteJob(user.id)"
                               type="button"
