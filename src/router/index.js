@@ -8,6 +8,7 @@ import AddJobs from "@/views/jobs-pages/add-job/index.vue";
 import DetailJob from "@/views/jobs-pages/detail-job/index.vue";
 import EditJob from "@/views/jobs-pages/edit-job/index.vue";
 import ReportJob from "@/views/jobs-pages/report-job/index.vue";
+import Users from "@/views/users/index.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,6 +61,11 @@ const router = createRouter({
       path: "/jobs/report",
       name: "report-job",
       component: ReportJob,
+    },
+    {
+      path: "/users",
+      name: "users",
+      component: Users,
     },
   ],
 });

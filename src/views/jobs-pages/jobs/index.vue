@@ -82,7 +82,7 @@ const initializeDataTable = () => {
         <div class="col-12">
           <div class="card">
             <div class="card-header d-flex justify-content-end">
-              <RouterLink to="/jobs/add" class="btn btn-success"
+              <RouterLink to="/jobs/add" class="btn bg-olive"
                 >Add Job</RouterLink
               >
             </div>

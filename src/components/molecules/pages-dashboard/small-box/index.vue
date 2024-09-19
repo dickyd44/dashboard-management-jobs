@@ -124,7 +124,7 @@ onMounted(async () => {
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-secondary">
+          <div class="small-box bg-teal">
             <div class="inner">
               <h3>
                 {{ status.fullTimePercentage
@@ -144,7 +144,7 @@ onMounted(async () => {
 
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-secondary">
+          <div class="small-box bg-teal">
             <div class="inner">
               <h3>
                 {{ status.internshipPercentage
@@ -164,7 +164,7 @@ onMounted(async () => {
 
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-secondary">
+          <div class="small-box bg-teal">
             <div class="inner">
               <h3>
                 {{ status.remotePercentage
@@ -184,7 +184,7 @@ onMounted(async () => {
 
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box bg-secondary">
+          <div class="small-box bg-teal">
             <div class="inner">
               <h3>
                 {{ status.partTimePercentage

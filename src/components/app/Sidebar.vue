@@ -77,6 +77,16 @@ onMounted(() => {
               <p>Reports</p>
             </RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink
+              to="/users"
+              class="nav-link text-white"
+              :class="{ 'active-link': isActiveLink('/users') }"
+            >
+              <i class="nav-icon fas fa-users"></i>
+              <p>Users</p>
+            </RouterLink>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

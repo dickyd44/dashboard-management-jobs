@@ -208,7 +208,7 @@ const handleSubmit = async () => {
               <!-- /.card-body -->
 
               <div class="card-footer d-flex justify-content-end">
-                <button type="submit" class="btn btn-success">Add Job</button>
+                <button type="submit" class="btn bg-olive">Add Job</button>
               </div>
             </form>
           </div>

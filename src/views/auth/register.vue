@@ -11,6 +11,7 @@ const toast = useToast();
 const register = reactive({
   username: "",
   email: "",
+  role: "",
   password: "",
   real_password: "",
   errorMessage: "",
@@ -26,6 +27,7 @@ const handleRegister = async () => {
     const response = await axios.post("/api/users", {
       username: register.username,
       email: register.email,
+      role: register.role,
       password: register.password,
     });
     const user = response.data;
@@ -83,6 +85,19 @@ const handleRegister = async () => {
               class="form-control"
               placeholder="Email"
             />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <select v-model="register.role" class="form-control" name="role">
+              <option disabled value="">Select Role</option>
+              <option value="superadmin">Super Admin</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>

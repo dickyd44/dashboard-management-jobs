@@ -18,6 +18,12 @@ const state = reactive({
             "#00c0ef",
             "#3c8dbc",
             "#d2d6de",
+            "#f56954",
+            "#00a65a",
+            "#f39c12",
+            "#00c0ef",
+            "#3c8dbc",
+            "#d2d6de",
           ],
         },
       ],
@@ -107,26 +113,9 @@ onMounted(async () => {
       <div class="row">
         <!-- DONUT CHART -->
         <div class="col-md-6">
-          <div class="card card-danger">
+          <div class="card card-olive">
             <div class="card-header">
               <h3 class="card-title">Donut Chart</h3>
-
-              <div class="card-tools">
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="collapse"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="remove"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
             </div>
             <div class="card-body">
               <canvas
@@ -145,26 +134,9 @@ onMounted(async () => {
 
         <!-- BAR CHART -->
         <div class="col-md-6">
-          <div class="card card-success">
+          <div class="card card-olive">
             <div class="card-header">
               <h3 class="card-title">Bar Chart</h3>
-
-              <div class="card-tools">
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="collapse"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-tool"
-                  data-card-widget="remove"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
             </div>
             <div class="card-body">
               <div class="chart">
