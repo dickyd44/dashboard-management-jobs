@@ -191,7 +191,7 @@ onMounted(async () => {
                 }}<sup style="font-size: 20px">%</sup>
               </h3>
 
-              <p>Part-Time Jobs Type</p>
+              <p>Part-Time</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>

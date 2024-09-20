@@ -3,74 +3,14 @@ import CardHeader from "@/components/atoms/CardHeader.vue";
 import Content from "@/components/atoms/Content.vue";
 import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
 import { RouterLink } from "vue-router";
-import { reactive, onMounted, nextTick } from "vue";
-import { useToast } from "vue-toastification";
-import axios from "axios";
+import { onMounted } from "vue";
+import { useJobStore } from "@/store/modules/useJobStore";
 
-const toast = useToast();
+const jobStore = useJobStore();
 
-const state = reactive({
-  job: [],
-  isLoading: true,
+onMounted(() => {
+  jobStore.fetchJobs();
 });
-
-const deleteJob = async (id) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  });
-
-  if (result.isConfirmed) {
-    try {
-      await axios.delete(`/api/jobs/${id}`);
-      state.job = state.job.filter((job) => job.id !== id);
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success",
-      });
-
-      // toast.success("Deleted job successfully");
-    } catch (error) {
-      console.error(error);
-      toast.error("Job wasn't deleted!");
-    }
-  }
-};
-
-onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/jobs`);
-    state.job = response.data;
-    console.log("Fetched Jobs:", state.job); // Debugging line
-    await nextTick();
-    initializeDataTable();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    state.isLoading = false;
-  }
-});
-
-const initializeDataTable = () => {
-  $("#table-primary").DataTable({
-    paging: true,
-    lengthChange: false,
-    searching: true,
-    ordering: true,
-    info: true,
-    responsive: true,
-    autoWidth: false,
-    //
-    scrollX: false,
-    scrollCollapse: false,
-  });
-};
 </script>
 
 <template>
@@ -82,11 +22,10 @@ const initializeDataTable = () => {
         <div class="col-12">
           <div class="card">
             <div class="card-header d-flex justify-content-end">
-              <RouterLink to="/jobs/add" class="btn bg-olive"
-                >Add Job</RouterLink
-              >
+              <RouterLink to="/jobs/add" class="btn bg-olive">
+                Add Job
+              </RouterLink>
             </div>
-            <!-- /.card-header -->
             <div class="card-body">
               <table
                 id="table-primary"
@@ -104,7 +43,7 @@ const initializeDataTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(job, idx) in state.job" :key="job.id" :job="job">
+                  <tr v-for="(job, idx) in jobStore.state.job" :key="job.id">
                     <td>{{ idx + 1 }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>
@@ -114,21 +53,18 @@ const initializeDataTable = () => {
                     <td class="d-flex">
                       <RouterLink
                         :to="`/jobs/${job.id}`"
-                        type="button"
                         class="btn btn-secondary mr-2"
                       >
                         <i class="fa fa-eye mr-1" /> Detail
                       </RouterLink>
                       <RouterLink
                         :to="`/jobs/edit/${job.id}`"
-                        type="button"
                         class="btn btn-info mr-2"
                       >
                         <i class="fa fa-edit mr-1" /> Edit
                       </RouterLink>
                       <button
-                        @click="() => deleteJob(job.id)"
-                        type="button"
+                        @click="jobStore.deleteJob(job.id)"
                         class="btn btn-danger"
                       >
                         <i class="fa fa-trash mr-1" /> Delete
