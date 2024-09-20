@@ -15,6 +15,12 @@ const form = reactive({
   error_message: "",
 });
 
+const changesPassword = reactive({
+  oldPassword: false,
+  newPassword: false,
+  confirmPassword: false,
+});
+
 const handleChangePassword = async () => {
   if (form.new_password !== form.confirm_password) {
     form.error_message = "Passwords do not match!";
@@ -56,6 +62,18 @@ const handleChangePassword = async () => {
     console.error(error);
   }
 };
+
+const canSeeOldPassword = () => {
+  changesPassword.oldPassword = !changesPassword.oldPassword;
+};
+
+const canSeeNewPassword = () => {
+  changesPassword.newPassword = !changesPassword.newPassword;
+};
+
+const canSeeConfirmPassword = () => {
+  changesPassword.confirmPassword = !changesPassword.confirmPassword;
+};
 </script>
 
 <template>
@@ -78,48 +96,78 @@ const handleChangePassword = async () => {
             <div class="input-group">
               <input
                 v-model="form.old_password"
-                type="password"
+                :type="changesPassword.oldPassword ? 'text' : 'password'"
                 name="password"
                 class="form-control"
                 placeholder="Old Password"
                 required
               />
               <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
+                <button
+                  type="button"
+                  @click="canSeeOldPassword"
+                  class="input-group-text"
+                >
+                  <span
+                    :class="
+                      changesPassword.oldPassword
+                        ? 'fas fa-eye-slash'
+                        : 'fas fa-eye'
+                    "
+                  ></span>
+                </button>
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
             <input
               v-model="form.new_password"
-              type="password"
+              :type="changesPassword.newPassword ? 'text' : 'password'"
               name="new_password"
               class="form-control"
               placeholder="New Password"
               required
             />
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+              <button
+                type="button"
+                @click="canSeeNewPassword"
+                class="input-group-text"
+              >
+                <span
+                  :class="
+                    changesPassword.newPassword
+                      ? 'fas fa-eye-slash'
+                      : 'fas fa-eye'
+                  "
+                ></span>
+              </button>
             </div>
           </div>
           <div class="mb-3">
             <div class="input-group">
               <input
                 v-model="form.confirm_password"
-                type="password"
+                :type="changesPassword.confirmPassword ? 'text' : 'password'"
                 name="confirm_new_password"
                 class="form-control"
                 placeholder="Confirm New Password"
                 required
               />
               <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-lock"></span>
-                </div>
+                <button
+                  type="button"
+                  @click="canSeeConfirmPassword"
+                  class="input-group-text"
+                >
+                  <span
+                    :class="
+                      changesPassword.confirmPassword
+                        ? 'fas fa-eye-slash'
+                        : 'fas fa-eye'
+                    "
+                  ></span>
+                </button>
               </div>
             </div>
           </div>

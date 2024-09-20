@@ -17,6 +17,11 @@ const register = reactive({
   errorMessage: "",
 });
 
+const twoPassword = reactive({
+  firstShowPassword: false,
+  confirmShowPassword: false,
+});
+
 const handleRegister = async () => {
   if (register.password !== register.real_password) {
     register.errorMessage = "Password do not match!";
@@ -45,6 +50,14 @@ const handleRegister = async () => {
     console.error(error);
   }
 };
+
+const canSeeFirstPassword = () => {
+  twoPassword.firstShowPassword = !twoPassword.firstShowPassword;
+};
+
+const canSeeConfirmPassword = () => {
+  twoPassword.confirmShowPassword = !twoPassword.confirmShowPassword;
+};
 </script>
 
 <template>
@@ -70,6 +83,7 @@ const handleRegister = async () => {
               type="text"
               class="form-control"
               placeholder="Username"
+              required
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -84,6 +98,7 @@ const handleRegister = async () => {
               type="email"
               class="form-control"
               placeholder="Email"
+              required
             />
             <div class="input-group-append">
               <div class="input-group-text">
@@ -91,8 +106,13 @@ const handleRegister = async () => {
               </div>
             </div>
           </div>
+
           <div class="input-group mb-3">
-            <select v-model="register.role" class="form-control" name="role">
+            <select
+              v-model="register.role"
+              class="form-control custom-select"
+              name="role"
+            >
               <option disabled value="">Select Role</option>
               <option value="superadmin">Super Admin</option>
               <option value="admin">Admin</option>
@@ -100,36 +120,60 @@ const handleRegister = async () => {
             </select>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-caret-down"></span>
+                <!-- Custom down arrow icon -->
               </div>
             </div>
           </div>
+
           <div class="input-group mb-3">
             <input
               v-model="register.password"
               name="password"
-              type="password"
+              :type="twoPassword.firstShowPassword ? 'text' : 'password'"
               class="form-control"
               placeholder="Password"
+              required
             />
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+              <button
+                type="button"
+                @click="canSeeFirstPassword"
+                class="input-group-text"
+              >
+                <span
+                  :class="
+                    twoPassword.firstShowPassword
+                      ? 'fas fa-eye-slash'
+                      : 'fas fa-eye'
+                  "
+                ></span>
+              </button>
             </div>
           </div>
           <div class="input-group mb-3">
             <input
               v-model="register.real_password"
               name="confirm-password"
-              type="password"
+              :type="twoPassword.confirmShowPassword ? 'text' : 'password'"
               class="form-control"
               placeholder="Confirm Password"
+              required
             />
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+              <button
+                type="button"
+                @click="canSeeConfirmPassword"
+                class="input-group-text"
+              >
+                <span
+                  :class="
+                    twoPassword.confirmShowPassword
+                      ? 'fas fa-eye-slash'
+                      : 'fas fa-eye'
+                  "
+                ></span>
+              </button>
             </div>
           </div>
           <div class="row">
@@ -152,3 +196,12 @@ const handleRegister = async () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.custom-select {
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  appearance: none; /* Standard */
+  background: transparent; /* Make the background of the select transparent to fully hide default arrow */
+}
+</style>

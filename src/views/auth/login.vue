@@ -1,7 +1,7 @@
 <script setup>
 import logo from "@/assets/logo.png";
 import router from "@/router";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { RouterLink } from "vue-router";
 import axios from "axios";
 
@@ -11,6 +11,8 @@ const account = reactive({
   password: "",
   errorMessage: "",
 });
+
+const showPassword = ref(false);
 
 const handleLogin = async () => {
   try {
@@ -29,6 +31,10 @@ const handleLogin = async () => {
     account.errorMessage = "An error occured during login";
     console.error(error);
   }
+};
+
+const canSeePassword = () => {
+  showPassword.value = !showPassword.value;
 };
 </script>
 
@@ -67,15 +73,21 @@ const handleLogin = async () => {
             <input
               v-model="account.password"
               name="password"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               class="form-control"
               placeholder="Password"
               required
             />
             <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+              <button
+                type="button"
+                @click="canSeePassword"
+                class="input-group-text"
+              >
+                <span
+                  :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                ></span>
+              </button>
             </div>
           </div>
           <div class="row">
