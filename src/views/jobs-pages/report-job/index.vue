@@ -2,41 +2,14 @@
 import CardHeader from "@/components/atoms/CardHeader.vue";
 import Content from "@/components/atoms/Content.vue";
 import ContainerFluid from "@/components/atoms/ContainerFluid.vue";
-import { reactive, onMounted, nextTick } from "vue";
-import axios from "axios";
+import { onMounted } from "vue";
+import { useReportStore } from "@/store/modules/useReportStore";
 
-const report = reactive({
-  job: [],
-  isLoading: true,
+const ReportStore = useReportStore();
+
+onMounted(() => {
+  ReportStore.fetchReportJobs();
 });
-
-onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/jobs`);
-    report.job = response.data;
-    console.log("Fetched Jobs:", report.job); // Debugging line
-    await nextTick();
-    initializeDataTable();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    report.isLoading = false;
-  }
-});
-
-const initializeDataTable = () => {
-  $("#table-export")
-    .DataTable({
-      responsive: true,
-      paging: true,
-      lengthChange: false,
-      autoWidth: false,
-      buttons: ["excel", "pdf", "print"],
-    })
-    .buttons()
-    .container()
-    .appendTo("#table-export_wrapper .col-md-6:eq(0)");
-};
 </script>
 
 <template>
@@ -64,7 +37,11 @@ const initializeDataTable = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(job, idx) in report.job" :key="job.id" :job="job">
+                  <tr
+                    v-for="(job, idx) in ReportStore.report.job"
+                    :key="job.id"
+                    :job="job"
+                  >
                     <td>{{ idx + 1 }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>

@@ -15,7 +15,7 @@ export const useJobStore = defineStore("jobStore", () => {
   const fetchJobs = async () => {
     try {
       const response = await axios.get(`/api/jobs`);
-      state.job = response.data;
+      state.job = response.data.sort((a, b) => a - b);
       console.log("Fetched jobs:", state.job); // Check if jobs are fetched correctly
       await nextTick();
       initializeDataTable(); // Initialize the DataTable
@@ -74,7 +74,13 @@ export const useJobStore = defineStore("jobStore", () => {
         autoWidth: false,
         scrollX: false,
         scrollCollapse: false,
+        order: [[0, "desc"]],
       });
+    } else {
+      $("#table-primary")
+        .DataTable()
+        .order([[0, "desc"]])
+        .draw();
     }
   };
 

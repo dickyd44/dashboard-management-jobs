@@ -43,7 +43,11 @@ onMounted(() => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(job, idx) in jobStore.state.job" :key="job.id">
+                  <tr
+                    v-for="(job, idx) in jobStore.state.job"
+                    :key="job.id"
+                    :id="`row-${job.id}`"
+                  >
                     <td>{{ idx + 1 }}</td>
                     <td>{{ job.title }}</td>
                     <td>{{ job.type }}</td>

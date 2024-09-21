@@ -87,18 +87,28 @@ onMounted(async () => {
     const response = await axios.get("/api/jobs");
     const jobs = response.data;
 
-    state.chartData.donut.labels = jobs.map((job) => job.type);
-    state.chartData.donut.datasets[0].data = jobs.map(
-      (job) => parseFloat(job.salary.replace(/[^\d.-]/g, "")) || 0
-    );
+    const jobAggregates = jobs.reduce((acc, job) => {
+      const type = job.type;
+      const salary = parseFloat(job.salary.replace(/[^\d.-]/g, "")) || 0;
 
-    const jobCounts = jobs.reduce((acc, job) => {
-      acc[job.type] = (acc[job.type] || 0) + 1;
+      if (!acc[type]) {
+        acc[type] = { count: 0, totalSalary: 0 };
+      }
+
+      acc[type].count += 1;
+      acc[type].totalSalary += salary;
       return acc;
     }, {});
 
-    state.chartData.bar.labels = Object.keys(jobCounts);
-    state.chartData.bar.datasets[0].data = Object.values(jobCounts);
+    state.chartData.donut.labels = Object.keys(jobAggregates);
+    state.chartData.donut.datasets[0].data = Object.values(jobAggregates).map(
+      (job) => job.totalSalary
+    );
+
+    state.chartData.bar.labels = Object.keys(jobAggregates);
+    state.chartData.bar.datasets[0].data = Object.values(jobAggregates).map(
+      (job) => job.count
+    );
 
     initializeCharts();
   } catch (error) {
